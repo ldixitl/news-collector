@@ -19,6 +19,17 @@ logger.addHandler(file_handler)
 
 
 def get_news(query: str, exclude_words: list, api_key: str = API_KEY_NEWS) -> list:
+    """
+    Получает новости с сайта newsapi.org на основе заданного запроса и исключает статьи, содержащие определенные слова.
+
+    Параметры:
+    query (str): Ключевые слова для поиска новостей.
+    exclude_words (list): Список слов, наличие которых в статье исключает её из результатов.
+    api_key (str, optional): API ключ для доступа к newsapi.org. По умолчанию используется API_KEY_NEWS.
+
+    Возвращает:
+    list: Список словарей, содержащих основную информацию о статьях (заголовок, автор, описание, ссылка).
+    """
     today = datetime.datetime.today()
     params = {
         "q": query,
