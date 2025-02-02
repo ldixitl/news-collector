@@ -3,7 +3,7 @@ import logging
 
 logger = logging.getLogger("save_to_file")
 logger.setLevel(logging.INFO)
-file_handler = logging.FileHandler("logs/save_to_file.log")
+file_handler = logging.FileHandler("logs/save_to_file.log", mode="w", encoding="UTF-8")
 file_formater = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s: %(message)s")
 file_handler.setFormatter(file_formater)
 logger.addHandler(file_handler)

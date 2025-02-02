@@ -1,12 +1,19 @@
 import datetime
 import logging
+import os
 
 from src.news import get_news
 from src.save_to_file import save_to_file
 
+log_dir = "logs"
+os.makedirs(log_dir, exist_ok=True)
+
+news_dir = "news"
+os.makedirs(news_dir, exist_ok=True)
+
 logger = logging.getLogger("main")
 logger.setLevel(logging.INFO)
-file_handler = logging.FileHandler("logs/main.log")
+file_handler = logging.FileHandler("logs/main.log", mode="w", encoding="UTF-8")
 file_formater = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s: %(message)s")
 file_handler.setFormatter(file_formater)
 logger.addHandler(file_handler)

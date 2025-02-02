@@ -12,7 +12,7 @@ BASE_URL_NEWS = os.getenv("BASE_URL_NEWS")
 
 logger = logging.getLogger("news")
 logger.setLevel(logging.INFO)
-file_handler = logging.FileHandler("logs/news.log")
+file_handler = logging.FileHandler("logs/news.log", mode="w", encoding="UTF-8")
 file_formater = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s: %(message)s")
 file_handler.setFormatter(file_formater)
 logger.addHandler(file_handler)
@@ -30,10 +30,10 @@ def get_news(query: str, exclude_words: list, api_key: str = API_KEY_NEWS) -> li
     Возвращает:
     list: Список словарей, содержащих основную информацию о статьях (заголовок, автор, описание, ссылка).
     """
-    today = datetime.datetime.today()
+    yesterday = datetime.datetime.today() - datetime.timedelta(days=1)
     params = {
         "q": query,
-        "from": today.strftime("%Y-%m-%d"),  # При необходимости заменить эту строку для изменения даты публикации
+        "from": yesterday.strftime("%Y-%m-%d"),  # При необходимости заменить эту строку для изменения даты публикации
         "sortBy": "publishedAt",
         "apiKey": api_key,
     }
